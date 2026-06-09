@@ -1,0 +1,657 @@
+/* =====================================
+   GLOBAL STYLES
+===================================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Segoe UI',sans-serif;
+background:#f8fafc;
+overflow-x:hidden;
+color:#1e293b;
+}
+
+/* =====================================
+   NAVBAR
+===================================== */
+
+.custom-navbar{
+background:#0f172a;
+padding:15px 0;
+box-shadow:0 4px 15px rgba(0,0,0,.15);
+z-index:1000;
+}
+
+.navbar-brand{
+font-size:24px;
+font-weight:700;
+}
+
+.nav-link{
+color:white !important;
+margin-left:10px;
+transition:.3s;
+}
+
+.nav-link:hover{
+color:#60a5fa !important;
+}
+
+/* =====================================
+   HERO SECTION
+===================================== */
+
+.hero-section{
+background:
+linear-gradient(
+135deg,
+#4f46e5,
+#7c3aed
+);
+color:white;
+padding:140px 0;
+min-height:100vh;
+display:flex;
+align-items:center;
+}
+
+.hero-title{
+font-size:65px;
+font-weight:800;
+line-height:1.2;
+}
+
+.hero-subtitle{
+font-size:22px;
+margin-top:20px;
+line-height:1.8;
+opacity:.95;
+}
+
+.hero-icon{
+font-size:220px;
+animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+
+0%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-15px);
+}
+
+100%{
+transform:translateY(0);
+}
+
+}
+
+/* =====================================
+   SECTION TITLES
+===================================== */
+
+.section-title{
+font-size:42px;
+font-weight:700;
+margin-bottom:20px;
+}
+
+/* =====================================
+   STATS
+===================================== */
+
+.stats-section{
+padding:100px 0;
+background:white;
+}
+
+.stat-card{
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:
+0 10px 30px rgba(0,0,0,.08);
+transition:.4s;
+}
+
+.stat-card:hover{
+transform:translateY(-10px);
+}
+
+.stat-card h1{
+font-size:50px;
+font-weight:700;
+color:#4f46e5;
+}
+
+/* =====================================
+   FEATURES
+===================================== */
+
+.features-section{
+padding:100px 0;
+background:#f8fafc;
+}
+
+.feature-card{
+background:white;
+padding:30px;
+text-align:center;
+border-radius:20px;
+height:100%;
+box-shadow:
+0 8px 25px rgba(0,0,0,.08);
+transition:.4s;
+}
+
+.feature-card:hover{
+transform:translateY(-10px);
+}
+
+.feature-card i{
+font-size:50px;
+margin-bottom:15px;
+color:#7c3aed;
+}
+
+.feature-card h4{
+font-weight:700;
+margin-bottom:10px;
+}
+
+/* =====================================
+   ABOUT SECTION
+===================================== */
+
+.about-section{
+padding:100px 0;
+background:white;
+}
+
+.about-section h2{
+font-size:42px;
+font-weight:700;
+margin-bottom:20px;
+}
+
+.about-section ul{
+list-style:none;
+padding-left:0;
+}
+
+.about-section li{
+margin-bottom:10px;
+font-size:18px;
+}
+
+/* =====================================
+   WHY SECTION
+===================================== */
+
+.why-section{
+padding:100px 0;
+background:#f8fafc;
+}
+
+.glass-card{
+background:
+rgba(255,255,255,.8);
+padding:30px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+box-shadow:
+0 10px 25px rgba(0,0,0,.08);
+height:100%;
+}
+
+.glass-card h4{
+font-weight:700;
+margin-bottom:15px;
+}
+
+/* =====================================
+   CONTACT
+===================================== */
+
+.contact-section{
+padding:100px 0;
+background:white;
+}
+
+.contact-icon{
+font-size:120px;
+color:#4f46e5;
+margin-bottom:20px;
+}
+
+/* =====================================
+   CTA
+===================================== */
+
+.cta-section{
+padding:90px 0;
+background:
+linear-gradient(
+135deg,
+#10b981,
+#059669
+);
+color:white;
+}
+
+.cta-section h2{
+font-size:42px;
+font-weight:700;
+}
+
+/* =====================================
+   FOOTER
+===================================== */
+
+.footer{
+background:#0f172a;
+color:white;
+padding:30px 0;
+}
+
+/* =====================================
+   UPLOAD PAGE
+===================================== */
+
+.upload-section{
+padding:120px 0;
+background:
+linear-gradient(
+135deg,
+#4f46e5,
+#7c3aed
+);
+min-height:100vh;
+display:flex;
+align-items:center;
+}
+
+.upload-card{
+background:white;
+padding:50px;
+border-radius:20px;
+max-width:700px;
+margin:auto;
+box-shadow:
+0 15px 35px rgba(0,0,0,.2);
+text-align:center;
+}
+
+/* =====================================
+   DASHBOARD
+===================================== */
+
+.dashboard-header{
+padding:70px 0;
+background:
+linear-gradient(
+135deg,
+#4f46e5,
+#7c3aed
+);
+color:white;
+text-align:center;
+}
+
+.dashboard-title{
+font-size:50px;
+font-weight:700;
+}
+
+.kpi-card{
+padding:25px;
+border-radius:20px;
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:
+0 10px 25px rgba(0,0,0,.15);
+}
+
+.kpi-card i{
+font-size:45px;
+}
+
+.action-card{
+display:block;
+padding:30px;
+text-align:center;
+background:white;
+border-radius:20px;
+text-decoration:none;
+color:black;
+box-shadow:
+0 10px 20px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.action-card:hover{
+transform:translateY(-10px);
+color:#4f46e5;
+}
+
+.action-card i{
+font-size:45px;
+margin-bottom:15px;
+}
+
+/* =====================================
+   SEGMENTATION
+===================================== */
+
+.segment-header{
+padding:70px 0;
+background:
+linear-gradient(
+135deg,
+#0ea5e9,
+#2563eb
+);
+color:white;
+text-align:center;
+}
+
+.segment-card{
+background:white;
+padding:25px;
+border-radius:20px;
+text-align:center;
+box-shadow:
+0 10px 25px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.segment-card:hover{
+transform:translateY(-10px);
+}
+
+.segment-card h1{
+font-size:50px;
+color:#2563eb;
+}
+
+.analytics-box{
+background:white;
+padding:25px;
+border-radius:20px;
+text-align:center;
+box-shadow:
+0 10px 20px rgba(0,0,0,.08);
+}
+
+.analytics-box h3{
+font-size:40px;
+color:#0ea5e9;
+}
+
+/* =====================================
+   PREDICTION
+===================================== */
+
+.prediction-header{
+padding:70px 0;
+background:
+linear-gradient(
+135deg,
+#ef4444,
+#dc2626
+);
+color:white;
+text-align:center;
+}
+
+.prediction-card{
+padding:25px;
+border-radius:20px;
+color:white;
+text-align:center;
+box-shadow:
+0 10px 25px rgba(0,0,0,.15);
+}
+
+.prediction-card h2{
+font-size:40px;
+font-weight:700;
+}
+
+/* =====================================
+   RECOMMENDATION
+===================================== */
+
+.recommend-header{
+padding:70px 0;
+background:
+linear-gradient(
+135deg,
+#10b981,
+#059669
+);
+color:white;
+text-align:center;
+}
+
+.recommend-stat{
+padding:25px;
+border-radius:20px;
+text-align:center;
+color:white;
+box-shadow:
+0 10px 25px rgba(0,0,0,.15);
+}
+
+.recommend-stat h2{
+font-size:40px;
+font-weight:700;
+}
+
+.recommendation-card{
+border:none;
+border-radius:20px;
+box-shadow:
+0 10px 25px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.recommendation-card:hover{
+transform:translateY(-10px);
+}
+
+/* =====================================
+   TABLES
+===================================== */
+
+.table{
+border-radius:15px;
+overflow:hidden;
+}
+
+.table thead{
+font-weight:700;
+}
+
+/* =====================================
+   BUTTONS
+===================================== */
+
+.btn{
+border-radius:10px;
+padding:12px 25px;
+font-weight:600;
+}
+
+.btn-warning{
+color:black;
+}
+
+/* =====================================
+   LOADER
+===================================== */
+
+#loader{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:white;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+.spinner{
+width:60px;
+height:60px;
+border:6px solid #ddd;
+border-top:6px solid #4f46e5;
+border-radius:50%;
+animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+
+100%{
+transform:rotate(360deg);
+}
+
+}
+
+/* =====================================
+   SIDEBAR
+===================================== */
+
+.sidebar{
+position:fixed;
+left:0;
+top:0;
+width:220px;
+height:100%;
+background:#0f172a;
+padding-top:80px;
+}
+
+.sidebar a{
+display:block;
+padding:15px;
+text-decoration:none;
+color:white;
+transition:.3s;
+}
+
+.sidebar a:hover{
+background:#4f46e5;
+}
+
+/* =====================================
+   DARK MODE
+===================================== */
+
+.dark-mode{
+background:#0f172a;
+color:white;
+}
+
+.dark-mode .card,
+.dark-mode .stat-card,
+.dark-mode .feature-card,
+.dark-mode .glass-card,
+.dark-mode .upload-card,
+.dark-mode .analytics-box{
+background:#1e293b;
+color:white;
+}
+
+.dark-mode table{
+color:white;
+}
+
+.dark-mode .table{
+background:#1e293b;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media(max-width:992px){
+
+.hero-title{
+font-size:45px;
+}
+
+.hero-icon{
+font-size:120px;
+margin-top:30px;
+}
+
+.dashboard-title{
+font-size:36px;
+}
+
+.section-title{
+font-size:32px;
+}
+
+}
+
+@media(max-width:768px){
+
+.hero-section{
+padding:100px 0;
+text-align:center;
+}
+
+.hero-subtitle{
+font-size:18px;
+}
+
+.stat-card{
+margin-bottom:20px;
+}
+
+.feature-card{
+margin-bottom:20px;
+}
+
+.sidebar{
+display:none;
+}
+
+.btn{
+position:relative;
+overflow:hidden;
+}
+
+.ripple{
+position:absolute;
+border-radius:50%;
+transform:scale(0);
+animation:ripple .6s linear;
+background:rgba(255,255,255,.5);
+}
+
+@keyframes ripple{
+
+to{
+transform:scale(4);
+opacity:0;
+}
+
+}
+
+}

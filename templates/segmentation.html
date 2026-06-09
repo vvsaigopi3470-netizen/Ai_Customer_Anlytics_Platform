@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Segmentation</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='css/style.css') }}">
+
+<script
+src="{{ url_for('static',
+filename='js/script.js') }}">
+</script>    
+
+<div class="container mt-4">
+
+<h2 class="text-center">
+
+Customer Segmentation
+
+</h2>
+
+<div class="row mt-4">
+
+{% for segment, count in segment_counts.items() %}
+
+<div class="col-md-3">
+
+<div class="card shadow">
+
+<div class="card-body text-center">
+
+<h5>Segment {{ segment }}</h5>
+
+<h3>{{ count }}</h3>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<hr>
+
+<div class="text-center">
+
+<img
+src="/{{ chart_path }}"
+class="img-fluid shadow">
+
+</div>
+
+<br>
+
+<a href="/dashboard"
+class="btn btn-primary">
+
+Back Dashboard
+
+</a>
+
+</div>
+
+</body>
+</html>

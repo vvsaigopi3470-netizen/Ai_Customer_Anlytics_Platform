@@ -65,6 +65,49 @@ os.makedirs(
 
 customer_df = None
 
+
+def standardize_columns(df):
+
+    df = df.copy()
+
+    column_mapping = {
+
+        "customerid": "CustomerID",
+        "customer id": "CustomerID",
+        "customer_id": "CustomerID",
+        "age": "Age",
+        "annualincome": "AnnualIncome",
+        "annual income": "AnnualIncome",
+        "annual_income": "AnnualIncome",
+        "spendingscore": "SpendingScore",
+        "spending score": "SpendingScore",
+        "spending_score": "SpendingScore",
+        "purchasecount": "PurchaseCount",
+        "purchase count": "PurchaseCount",
+        "purchase_count": "PurchaseCount",
+        "revenue": "Revenue",
+        "churn": "Churn"
+    }
+
+    renamed_columns = {}
+
+    for col in df.columns:
+
+        normalized = col.strip().lower()
+
+        normalized = normalized.replace(" ", "").replace("_", "")
+
+        if normalized in column_mapping:
+
+            renamed_columns[col] = column_mapping[normalized]
+
+        else:
+
+            renamed_columns[col] = col
+
+    return df.rename(columns=renamed_columns)
+
+
 # ============================
 # Home
 # ============================
@@ -107,7 +150,7 @@ def upload_dataset():
 
     if file.filename == '':
 
-        return "Please Select CSV File"
+        return "Please Select a File"
 
     filepath = os.path.join(
         app.config['UPLOAD_FOLDER'],
@@ -116,18 +159,184 @@ def upload_dataset():
 
     file.save(filepath)
 
-    customer_df = pd.read_csv(
-        filepath
-    )
+    try:
 
-    customer_df = preprocess_dataset(
-        customer_df
-    )
+        # ------------------------
+        # Read CSV or Excel
+        # ------------------------
 
-    return redirect(
-        url_for('dashboard')
-    )
+        if file.filename.lower().endswith('.csv'):
 
+            customer_df = pd.read_csv(
+                filepath
+            )
+
+        elif file.filename.lower().endswith('.xlsx'):
+
+            customer_df = pd.read_excel(
+                filepath
+            )
+
+        else:
+
+            return """
+            <h3>
+            Only CSV and Excel Files
+            Are Supported
+            </h3>
+            """
+
+        # ------------------------
+        # Standardize Columns
+        # ------------------------
+
+        customer_df = standardize_columns(
+            customer_df
+        )
+
+        # ------------------------
+        # Create Missing Columns
+        # ------------------------
+
+        required_columns = [
+
+            "CustomerID",
+            "Age",
+            "AnnualIncome",
+            "SpendingScore",
+            "PurchaseCount",
+            "Revenue",
+            "Churn"
+        ]
+
+        for col in required_columns:
+
+            if col not in customer_df.columns:
+
+                if col == "CustomerID":
+
+                    customer_df[col] = range(
+                        1,
+                        len(customer_df) + 1
+                    )
+
+                elif col == "Age":
+
+                    customer_df[col] = 30
+
+                elif col == "AnnualIncome":
+
+                    customer_df[col] = 50000
+
+                elif col == "SpendingScore":
+
+                    customer_df[col] = 50
+
+                elif col == "PurchaseCount":
+
+                    customer_df[col] = 5
+
+                elif col == "Revenue":
+
+                    customer_df[col] = 10000
+
+                elif col == "Churn":
+
+                    customer_df[col] = 0
+
+        # ------------------------
+        # Handle Missing Values
+        # ------------------------
+
+        customer_df.fillna(
+            0,
+            inplace=True
+        )
+
+        # ------------------------
+        # Preprocess Dataset
+        # ------------------------
+
+        customer_df = preprocess_dataset(
+            customer_df
+        )
+
+        return redirect(
+            url_for('dashboard')
+        )
+
+    except Exception as e:
+
+        return f"""
+        <h3>
+        Dataset Upload Failed
+        </h3>
+
+        <p>
+        {str(e)}
+        </p>
+        """
+    
+        # ============================
+        # Dynamic Column Mapping
+        # ============================
+
+def standardize_columns(df):
+    column_mapping = {
+        # Customer ID
+        "customerid": "CustomerID",
+        "customer_id": "CustomerID",
+        "id": "CustomerID",
+
+        # Age
+        "age": "Age",
+
+        # Income
+        "annualincome": "AnnualIncome",
+        "annual_income": "AnnualIncome",
+        "income": "AnnualIncome",
+        "salary": "AnnualIncome",
+
+        # Spending Score
+        "spendingscore": "SpendingScore",
+        "spending_score": "SpendingScore",
+        "score": "SpendingScore",
+        "spending": "SpendingScore",
+
+        # Purchase Count
+        "purchasecount": "PurchaseCount",
+        "purchase_count": "PurchaseCount",
+        "orders": "PurchaseCount",
+        "purchases": "PurchaseCount",
+        "transactions": "PurchaseCount",
+
+        # Revenue
+        "revenue": "Revenue",
+        "sales": "Revenue",
+        "amountspent": "Revenue",
+        "amount_spent": "Revenue",
+        "totalspend": "Revenue",
+
+        # Churn
+        "churn": "Churn",
+        "left": "Churn",
+        "exited": "Churn"
+    }
+
+    rename_dict = {}
+    for col in df.columns:
+        clean_col = (
+            col.lower()
+            .replace(" ", "")
+            .replace("-", "")
+            .replace("_", "")
+        )
+        if clean_col in column_mapping:
+            rename_dict[col] = column_mapping[clean_col]
+
+    df.rename(columns=rename_dict, inplace=True)
+    return df
+    
 # ============================
 # Dashboard
 # ============================
